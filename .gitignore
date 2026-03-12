@@ -1,0 +1,20 @@
+# PHP
+.phpunit.result.cache
+composer.lock
+vendor/
+
+# XAMPP / Servers
+.htaccess
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+
+# Temp / Reference files
+radio (1).html
+*.tmp
+*.log
