@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración Documental - TecNM Campus San Miguel El Grande</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        /* Clase para la navbar principal cuando está fija */
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            animation: slideDownNavbar 0.3s ease-out;
+            z-index: 50;
+        }
+
+        @keyframes slideDownNavbar {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Estilos generales */
+        .pleca-logo {
+            @apply h-10 md:h-12 lg:h-14 object-contain my-1 md:my-0;
+        }
+
+        .navbar-link {
+            @apply text-gray-700 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium;
+        }
+
+        .navbar-link-gov {
+            @apply text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium;
+        }
+        
+        .btn-secondary { @apply bg-amber-500 text-white hover:bg-amber-600; }
+        .btn { @apply px-6 py-3 rounded-lg font-semibold transition-colors duration-300; }
+
+        #menu-azul .dropdown-menu a,
+        #menu-azul .submenu a {
+            display: block;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: #374151;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        #menu-azul .dropdown-menu a:hover,
+        #menu-azul .submenu a:hover {
+            background-color: #E5E7EB;
+            color: #1D4ED8;
+        }
+
+        #menu-azul .dropdown-toggle:hover,
+        #menu-azul .dropdown-toggle-submenu:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Barra Gobierno de México -->
+    <header class="bg-[#0B231E] py-2 hidden md:block">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="https://www.gob.mx/" target="_blank">
+                <img src="https://framework-gb.cdn.gob.mx/landing/img/logoheader.svg" alt="Gobierno de México" class="h-8">
+            </a>
+            <nav class="flex space-x-4">
+                <a href="https://www.gob.mx/gobierno" target="_blank" class="navbar-link-gov">Gobierno</a>
+                <a href="https://www.gob.mx/participa" target="_blank" class="navbar-link-gov">Participa</a>
+                <a href="https://datos.gob.mx" target="_blank" class="navbar-link-gov">Datos</a>
+                <a href="https://www.gob.mx/busqueda" target="_blank" class="navbar-link-gov">
+                    <i class="fas fa-search"></i><span class="sr-only">Búsqueda</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Encabezado Principal con Logos Institucionales -->
+    <section id="logos-institucionales" class="bg-white py-3 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-x-4 md:gap-x-6 lg:gap-x-8">
+                <a href="https://www.gob.mx/" target="_blank">
+                    <img src="assets/files/main/img/pleca-gob1.png" alt="Logo Gobierno de México" width="200" class="pleca-logo" title="Gobierno de México" onerror="this.alt='Logo Gobierno de México (Error)'; this.src='https://placehold.co/200x50/CCCCCC/FFFFFF?text=Logo+GobMx';">
+                </a>
+                <a href="https://www.gob.mx/sep" target="_blank">
+                     <img src="assets/files/main/img/pleca-gob2.png" alt="Logo SEP" width="200" class="pleca-logo" title="SEP" onerror="this.alt='Logo SEP (Error)'; this.src='https://placehold.co/200x50/CCCCCC/FFFFFF?text=Logo+SEP';">
+                </a>
+                <a href="https://www.tecnm.mx/" target="_blank">
+                     <img src="assets/files/main/img/pleca_tecnm.jpg" alt="Logo TecNM" width="150" class="pleca-logo" title="TecNM" onerror="this.alt='Logo TecNM (Error)'; this.src='https://placehold.co/150x50/CCCCCC/FFFFFF?text=Logo+TecNM';">
+                </a>
+                <a href="index.html">
+                     <img src="images/logos/logoITSMIGRA.jpg" alt="Logo ITSMIGRA" width="90" class="pleca-logo" title="ITSMIGRA" onerror="this.alt='Logo ITSMIGRA (Error)'; this.src='https://placehold.co/90x50/CCCCCC/FFFFFF?text=Logo+ITSMIGRA';">
+                </a>
+                <a href="Aviso_Privacidad.html" target="_blank">
+                     <img src="images/anexos/14.png" alt="Aviso de Privacidad" width="90" class="pleca-logo" title="Aviso de Privacidad" onerror="this.alt='Aviso Privacidad (Error)'; this.src='https://placehold.co/90x50/CCCCCC/FFFFFF?text=Aviso';">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navbar Principal (Blanca) -->
+    <nav id="navbar-principal" class="bg-white shadow-md z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <img src="images/logos/logoITSMIGRA.jpg" alt="Logo ITSMIGRA Icono" class="h-10 w-10 rounded-full" onerror="this.alt='Icono ITSMIGRA (Error)'; this.src='https://placehold.co/40x40/CCCCCC/FFFFFF?text=Icon';">
+                    <a href="index.html" class="text-xl font-bold text-blue-800">TecNM San Miguel El Grande</a>
+                </div>
+                <div class="hidden md:flex space-x-4 items-center">
+                    <a href="index.html#inicio" class="navbar-link">Inicio</a>
+                    <a href="index.html#conocenos" class="navbar-link">Conócenos</a>
+                    <a href="index.html#oferta-educativa" class="navbar-link">Oferta Educativa</a>
+                    <a href="index.html#vida-estudiantil" class="navbar-link">Vida Estudiantil</a>
+                    <a href="index.html#noticias" class="navbar-link">Noticias</a>
+                    <a href="index.html#admisiones" class="btn btn-secondary">Admisiones</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-700 focus:outline-none">
+                        <i class="fas fa-bars fa-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg">
+            <a href="index.html#inicio" class="block navbar-link text-center py-2">Inicio</a>
+            <a href="index.html#conocenos" class="block navbar-link text-center py-2">Conócenos</a>
+            <a href="index.html#oferta-educativa" class="block navbar-link text-center py-2">Oferta Educativa</a>
+            <a href="index.html#vida-estudiantil" class="block navbar-link text-center py-2">Vida Estudiantil</a>
+            <a href="index.html#noticias" class="block navbar-link text-center py-2">Noticias</a>
+            <a href="index.html#admisiones" class="block text-center py-3 font-semibold bg-amber-500 text-white hover:bg-amber-600 transition-colors duration-300">Admisiones</a>
+        </div>
+    </nav>
+
+    <!-- Menú Azul (Secundario) -->
+     <nav id="menu-azul" class="bg-[#1B396A] text-white hidden md:block print:hidden relative z-40">
+        <div class="container mx-auto px-4">
+            <ul class="flex flex-wrap space-x-1 py-2 text-sm items-center">
+                <li class="relative">
+                    <a href="index.html" class="px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center" title="Inicio">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Alumnos <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="reinscripciones.html" role="menuitem">Reinscripción</a>
+                        <a href="Servicio-Social.html" role="menuitem">Servicio Social</a>
+                        <a href="Recidencias-Profecionales.html" role="menuitem">Residencia Profesional</a>
+                        <a href="pdf/REGLAMENTO_DE_ALUMNOS_POR_COMPETENCIAS.pdf" target="_blank" role="menuitem">Reglamento Estudiantil</a>
+                        <a href="CNBBBJ_202203_Avisos.html" role="menuitem">Becas</a>
+                        <a href="Titulacion.html" role="menuitem">Titulación</a>
+						<a href="https://itsmiguelgde.mindbox.app/login/alumno" role="menuitem">Plataforma virtual</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Académicos <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="Convocatorias.html" role="menuitem">Convocatoria a Docentes</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Estadística <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <div class="relative group-submenu-azul-hover">
+                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                Estadística General <i class="fas fa-chevron-right fa-sm"></i>
+                            </a>
+                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-72 bg-white rounded-md shadow-lg py-1 z-40 hidden" role="menu">
+                                <a href="estadistica/Anuario_estadístico_CE 2022-2023.xlsx" target="_blank" role="menuitem">Anuario-Resumen-CE 2022-2023</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Conócenos <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="Junta-Directiva.html" role="menuitem">Junta Directiva</a>
+                        <a href="Fundamentos.html" role="menuitem">Fundamentos</a>
+                        <a href="Historia.html" role="menuitem">Historia</a>
+                        <a href="Organigrama.html" role="menuitem">Organigrama</a>
+                        <a href="Directorio.html" role="menuitem">Directorio</a>
+                        <a href="Donde-Estamos.html" role="menuitem">¿Dónde estamos?</a>
+                        <a href="Principios-Rectores.html" role="menuitem">Principios Rectores</a>
+                        <a href="indexl.html" role="menuitem">Sistema de Gestión Integral</a>
+                        <a href="Etica-e-Integridad.html" role="menuitem">Ética e Integridad Pública</a>
+						<a href="radio.html" role="menuitem">Radio ITSMIGRA</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Admisión <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-56 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="Nuevo-Ingreso.html" role="menuitem">Nuevo Ingreso 2025</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Oferta Educativa <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-96 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="Tics.html" role="menuitem">Ing. en Tecnologías de la Información y Comunicaciones</a>
+                        <a href="IIAS.html" role="menuitem">Ing. en Innovación Agrícola Sustentable</a>
+                        <a href="IDC.html" role="menuitem">Ing. en Desarrollo Comunitario</a>
+                        <a href="administracion.html" role="menuitem">Ing. en Administración</a>
+                        <a href="Forestal.html" role="menuitem">Ing. Forestal</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Servicios <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="https://www.smiguelgde.tecnm.mx/TECNM/" target="_blank" role="menuitem">Plataforma Digital</a>
+                        <a href="https://elibro.net/es/lc/smiguelgde/login_usuario/?next=/es/lc/smiguelgde/inicio/" target="_blank" role="menuitem">Biblioteca Virtual</a>
+                        <a href="reinscripciones.html" role="menuitem">Reinscripciones</a>
+                        <a href="Titulacion.html" role="menuitem">Titulación</a>
+                        <a href="pdf/calendario/calendario_escolar.pdf" target="_blank" role="menuitem">Calendario escolar</a>
+                        <a href="pdf/REGLAMENTO_DE_ALUMNOS_POR_COMPETENCIAS.pdf" target="_blank" role="menuitem">Reglamento para alumnos</a>
+                        <a href="seguro_escolar.html" role="menuitem">Seguro escolar</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Vinculación <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="Servicio-Social.html" role="menuitem">Servicio Social</a>
+                        <a href="Recidencias-Profecionales.html" role="menuitem">Residencia Profesional</a>
+                        <a href="Actividades-Complementarias.html" role="menuitem">Actividades Complementarias</a>
+                    </div>
+                </li>
+                <li class="relative">
+                    <a href="https://scco.oaxaca.gob.mx/transparencia/?dep=50" target="_blank" class="px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Transparencia
+                    </a>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Datos de Interés <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-80 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <a href="https://www.oaxaca.gob.mx/transparencia/" target="_blank" role="menuitem">Información Pública</a>
+                        <a href="http://www.transparenciapresupuestaria.oaxaca.gob.mx/" target="_blank" role="menuitem">Transparencia Presupuestaria</a>
+                        <a href="https://www.oaxaca.gob.mx/transparencia/" target="_blank" role="menuitem">Gobierno Abierto</a>
+                        <a href="Aviso_Privacidad.html" target="_blank" role="menuitem">Aviso de Privacidad</a>
+                        <a href="Administración_documental_del_ITSMIGRA.html" target="_blank" role="menuitem">Administración documental del ITSMIGRA</a>
+                    </div>
+                </li>
+                <li class="relative group-menu-azul-hover">
+                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle px-3 py-2 rounded-md hover:bg-opacity-20 hover:bg-white transition-colors duration-200 flex items-center">
+                        Info. Financiera <i class="fas fa-chevron-down fa-sm ml-1"></i>
+                    </a>
+                    <div class="dropdown-menu absolute left-0 mt-0 w-64 bg-white rounded-md shadow-lg py-1 z-30 hidden" role="menu">
+                        <div class="relative group-submenu-azul-hover">
+                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                Estados Financieros <i class="fas fa-chevron-right fa-sm"></i>
+                            </a>
+                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-64 bg-white rounded-md shadow-lg py-1 z-40 hidden" role="menu">
+                                <div class="relative group-submenu-azul-hover">
+                                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                        Estados Financieros 2024 <i class="fas fa-chevron-right fa-sm"></i>
+                                    </a>
+                                    <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                        <a href="pdf/Reportes_presupuestales/ESTADOS FINANCIEROS/EDOS FINANCIEROS.pdf" target="_blank" role="menuitem">Tercer Trimestre</a>
+                                        <a href="pdf/Reportes_presupuestales/cuarto trimestre/HIPERVINCULO XXIA Y XXXIB.pdf" target="_blank" role="menuitem">Cuarto Trimestre</a>
+                                    </div>
+                                </div>
+                                <div class="relative group-submenu-azul-hover">
+                                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                        Estados Financieros 2025 <i class="fas fa-chevron-right fa-sm"></i>
+                                    </a>
+                                    <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                       <a href="reportes presupuestales/CLASIFICACION X OBJ DEL GTO 1ER TRIM 2025.pdf" target="_blank" role="menuitem">Primer Trimestre</a>
+                                       <div class="relative group-submenu-azul-hover">
+                                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                                Segundo Trimestre <i class="fas fa-chevron-right fa-sm"></i>
+                                            </a>
+                                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-72 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                                <a href="reportes presupuestales/Segundo trimestre/EDO ANALITICO DE INGRESOS.pdf" target="_blank" role="menuitem">ESTADO ANALITICO DE INGRESOS</a>
+                                                <a href="reportes presupuestales/Segundo trimestre/NOTAS ENE-JUN2025 OK.pdf" target="_blank" role="menuitem">NOTAS ENE-JUN 2025</a>
+                                                <a href="reportes presupuestales/Segundo trimestre/PDF FLUJO OK JUN 2025.pdf" target="_blank" role="menuitem">FLUJO JUNIO 2025</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" role="menuitem">Ley Disciplina Financiera</a>
+                        <div class="relative group-submenu-azul-hover">
+                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                SEVAC <i class="fas fa-chevron-right fa-sm"></i>
+                            </a>
+                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-40 hidden" role="menu">
+                                 <div class="relative group-submenu-azul-hover">
+                                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                        2025 <i class="fas fa-chevron-right fa-sm"></i>
+                                    </a>
+                                    <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                       <a href="SEVAC/INF FINANCIERA EDOS FIN 1ER TRIM PAGINA.pdf" target="_blank" role="menuitem">Primer Trimestre</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" role="menuitem">Cuenta Pública</a>
+                        <div class="relative group-submenu-azul-hover">
+                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                Reportes presupuestales <i class="fas fa-chevron-right fa-sm"></i>
+                            </a>
+                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-72 bg-white rounded-md shadow-lg py-1 z-40 hidden" role="menu">
+                                <div class="relative group-submenu-azul-hover">
+                                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                        Reportes presupuestales 2024 <i class="fas fa-chevron-right fa-sm"></i>
+                                    </a>
+                                    <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                        <a href="Reportes presupuestales.html" role="menuitem">Tercer Trimestre</a>
+                                        <a href="Reportes presupuestales cuarto trimestre.html" role="menuitem">Cuarto Trimestre</a>
+                                    </div>
+                                </div>
+                                 <div class="relative group-submenu-azul-hover">
+                                    <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+
+                                        Reportes presupuestales 2025 <i class="fas fa-chevron-right fa-sm"></i>
+                                    </a>
+                                    <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                       <a href="reportes presupuestales/CLASIFICADORES 1ER TRIM 2025.pdf" target="_blank" role="menuitem">Primer Trimestre</a>
+                                       <div class="relative group-submenu-azul-hover">
+                                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                                Segundo Trimestre <i class="fas fa-chevron-right fa-sm"></i>
+                                            </a>
+                                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-72 bg-white rounded-md shadow-lg py-1 z-50 hidden" role="menu">
+                                                <a href="reportes presupuestales/resumen programa presupuestario.pdf" target="_blank" role="menuitem">Resumen Programa Presupuestario</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="reportes presupuestales/clasificacion objeto del gasto.pdf" role="menuitem">Estado analítico del ejercicio del presupuesto</a>
+                            </div>
+                        </div>
+                        <div class="relative group-submenu-azul-hover">
+                            <a href="#" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle-submenu flex justify-between items-center w-full" role="menuitem">
+                                Auditorías <i class="fas fa-chevron-right fa-sm"></i>
+                            </a>
+                            <div class="submenu absolute left-full top-0 mt-0 ml-px w-56 bg-white rounded-md shadow-lg py-1 z-40 hidden" role="menu">
+                                <a href="auditorias.html" role="menuitem">Auditorías 2024</a>
+                                <a href="auditorias2025.html" role="menuitem">Auditorías 2025</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="py-16">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-10">Radio ITSMIGRA</h1>
+
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">ITSMIGRA</h4>
+                    <img src="images/logos/logoITSMIGRA.jpg" alt="Logo ITSMIGRA Blanco" class="mb-3 h-10 bg-white p-1 rounded">
+                    <p class="text-sm">Tecnológico Nacional de México <br>Campus San Miguel El Grande</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Enlaces Rápidos</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="index.html#oferta-educativa" class="hover:text-amber-400">Oferta Educativa</a></li>
+                        <li><a href="index.html#admisiones" class="hover:text-amber-400">Admisiones</a></li>
+                        <li><a href="pdf/calendario/calendario_escolar.pdf" target="_blank" class="hover:text-amber-400">Calendario Escolar</a></li>
+                        <li><a href="https://www.smiguelgde.tecnm.mx/TECNM/" target="_blank" class="hover:text-amber-400">Plataforma Digital</a></li>
+                         <li><a href="Aviso_Privacidad.html" class="hover:text-amber-400">Aviso de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Contacto</h4>
+                    <address class="text-sm not-italic">
+                        Km. 1.2 Carretera a la comunidad de Morelos S/N,<br>
+                        San Miguel el Grande, Tlaxiaco, Oaxaca, C.P. 71140<br><br>
+                        <i class="fas fa-envelope mr-2"></i> dir_dsmiguelgde@tecnm.mx<br>
+                        <i class="fas fa-phone mr-2"></i> 953 503 91 34
+                    </address>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-3">Síguenos</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/TecNMCampusITSMIGRA" target="_blank" class="text-2xl hover:text-amber-400"><i class="fab fa-facebook-square"></i></a>
+                        <a href="https://twitter.com/TecNMITSMIGRA" target="_blank" class="text-2xl hover:text-amber-400"><i class="fab fa-twitter-square"></i></a>
+                        <a href="https://www.youtube.com/channel/UCzP-MyiHNbHMdDvJcopdY1Q?view_as=subscriber" target="_blank" class="text-2xl hover:text-amber-400"><i class="fab fa-youtube-square"></i></a> </div>
+                     <div class="mt-4">
+                        <a href="https://www.gob.mx/sep" target="_blank">
+                            <img src="images/logos/logosep.webp" alt="SEP" class="h-8 mb-2 inline-block">
+                        </a>
+                        <a href="https://www.tecnm.mx/" target="_blank">
+                            <img src="assets/files/main/img/pleca_tenm - copia.png" alt="TecNM" class="h-8 inline-block">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-sm text-center">
+                <p>© <span id="currentYear"></span> TecNM Campus San Miguel El Grande. Todos los derechos reservados.</p>
+                <p>Esta página es un prototipo de rediseño.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            const currentYearElement = document.getElementById('currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            const navbar = document.getElementById('navbar-principal');
+            if (navbar) {
+                const navbarHeight = navbar.offsetHeight;
+                const navbarOriginalOffsetTop = navbar.offsetTop;
+
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > navbarOriginalOffsetTop) {
+                        if (!navbar.classList.contains('navbar-fixed')) {
+                            navbar.classList.add('navbar-fixed');
+                            document.body.style.paddingTop = navbarHeight + 'px';
+                        }
+                    } else {
+                        if (navbar.classList.contains('navbar-fixed')) {
+                            navbar.classList.remove('navbar-fixed');
+                            document.body.style.paddingTop = '0px';
+                        }
+                    }
+                });
+            }
+
+            const menuAzul = document.getElementById('menu-azul');
+            if (menuAzul) {
+                function showMenu(element) {
+                    if (element) {
+                        element.classList.remove('hidden');
+                        const toggle = element.previousElementSibling;
+                        if (toggle && toggle.matches('a[aria-expanded]')) {
+                            toggle.setAttribute('aria-expanded', 'true');
+                        }
+                    }
+                }
+                function hideMenu(element) {
+                    if (element) {
+                        element.classList.add('hidden');
+                        const toggle = element.previousElementSibling;
+                        if (toggle && toggle.matches('a[aria-expanded]')) {
+                            toggle.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+                }
+                menuAzul.querySelectorAll('.group-menu-azul-hover').forEach(li => {
+                    const dropdown = li.querySelector(':scope > .dropdown-menu');
+                    if (dropdown) {
+                        const toggleLink = li.querySelector(':scope > .dropdown-toggle');
+                        if (toggleLink) toggleLink.setAttribute('aria-expanded', 'false');
+                        li.addEventListener('mouseenter', () => {
+                            menuAzul.querySelectorAll('.group-menu-azul-hover > .dropdown-menu').forEach(otherDropdown => {
+                                if (otherDropdown !== dropdown && !otherDropdown.classList.contains('hidden')) {
+                                    hideMenu(otherDropdown);
+                                    otherDropdown.querySelectorAll('.submenu').forEach(sub => hideMenu(sub));
+                                }
+                            });
+                            showMenu(dropdown);
+                        });
+                        li.addEventListener('mouseleave', () => {
+                            setTimeout(() => {
+                                if (!li.matches(':hover') && !dropdown.matches(':hover')) hideMenu(dropdown);
+                            }, 100);
+                        });
+                    }
+                });
+                menuAzul.querySelectorAll('.group-submenu-azul-hover').forEach(subLi => {
+                    const submenu = subLi.querySelector(':scope > .submenu');
+                    if (submenu) {
+                        const subToggleLink = subLi.querySelector(':scope > .dropdown-toggle-submenu');
+                        if (subToggleLink) subToggleLink.setAttribute('aria-expanded', 'false');
+                        subLi.addEventListener('mouseenter', (event) => {
+                            event.stopPropagation();
+                            const parentMenu = subLi.parentElement;
+                            if (parentMenu) {
+                                 Array.from(parentMenu.children).filter(child => child.classList.contains('group-submenu-azul-hover') && child !== subLi).forEach(siblingLi => {
+                                    const siblingSubmenu = siblingLi.querySelector(':scope > .submenu');
+                                    if(siblingSubmenu) hideMenu(siblingSubmenu);
+                                });
+                            }
+                            showMenu(submenu);
+                        });
+                        subLi.addEventListener('mouseleave', (event) => {
+                            event.stopPropagation();
+                             setTimeout(() => {
+                                if (!subLi.matches(':hover') && !submenu.matches(':hover')) hideMenu(submenu);
+                            }, 100);
+                        });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
