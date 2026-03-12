@@ -351,22 +351,6 @@ body {
         width: 100%;
     }
 
-    .alphabet-list {
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 1rem;
-        white-space: nowrap;
-    }
-
-    .category-filters {
-        overflow-x: auto;
-        justify-content: flex-start;
-        padding: 0.5rem;
-        white-space: nowrap;
-        flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-    }
-
     /* Historias y Leyendas Móvil */
     .historias-grid {
         grid-template-columns: 1fr;
@@ -739,21 +723,74 @@ body {
 
 
 /* Diccionario Mejorado - Filtros */
-.filter-container {
+.carousel-wrapper {
+    position: relative;
     display: flex;
-    justify-content: center;
+    align-items: center;
     margin-bottom: 2rem;
+    padding: 0 40px;
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 10;
+    transition: all 0.2s;
+    color: var(--header-blue);
+}
+
+.nav-btn:hover {
+    background-color: var(--header-blue);
+    color: #ffffff;
+}
+
+.nav-btn.prev { left: 0; }
+.nav-btn.next { right: 0; }
+
+.filter-container, .alphabet-container {
+    width: 100%;
+    overflow: hidden;
+    scroll-behavior: smooth;
 }
 
 .category-filters {
     display: flex;
     gap: 0.8rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 900px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 1rem 1.5rem; /* Padding lateral para que no toque bordes */
+    justify-content: flex-start;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.category-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.category-filters {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.alphabet-link:hover, .alphabet-link.active {
+    background-color: #E5E7EB;
+    color: #1D4ED8;
 }
 
 .cat-link {
+    white-space: nowrap;
     text-decoration: none;
     background-color: #ffffff;
     color: var(--text-main);
@@ -773,18 +810,37 @@ body {
 }
 
 /* Ajustes de Diccionario en style.css */
+.alphabet-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 1rem 1.5rem; /* Padding lateral */
+    background-color: #ffffff;
+    box-shadow: var(--box-shadow);
+    border-radius: 0.25rem;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+}
+
+.alphabet-list::-webkit-scrollbar {
+    display: none;
+}
+
+.alphabet-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .alphabet-link {
+    flex: 0 0 auto;
     text-decoration: none;
     color: #374151;
-    padding: 0.2rem 0.5rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 0.25rem;
     transition: all 0.2s;
     font-weight: 500;
-}
-
-.alphabet-link:hover, .alphabet-link.active {
-    background-color: #E5E7EB;
-    color: #1D4ED8;
 }
 
 .words-grid-list {

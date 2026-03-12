@@ -13,30 +13,38 @@
         </div>
 
         <!-- Filtro por Categorías -->
-        <div class="filter-container">
-            <div class="category-filters">
-                <a href="/mixteco/diccionario" class="cat-link <?= !isset($_GET['categoria']) ? 'active' : '' ?>">Todas las categorías</a>
-                <?php foreach($categorias as $cat): ?>
-                    <a href="/mixteco/diccionario?categoria=<?= $cat['id'] ?>" 
-                       class="cat-link <?= (isset($_GET['categoria']) && $_GET['categoria'] == $cat['id']) ? 'active' : '' ?>">
-                        <?= htmlspecialchars($cat['nombre']) ?>
-                    </a>
-                <?php endforeach; ?>
+        <div class="carousel-wrapper">
+            <button class="nav-btn prev" onclick="scrollCarousel('cat-filters', -200)"><i class="fas fa-chevron-left"></i></button>
+            <div class="filter-container" id="cat-filters">
+                <div class="category-filters">
+                    <a href="/mixteco/diccionario" class="cat-link <?= !isset($_GET['categoria']) ? 'active' : '' ?>">Todas las categorías</a>
+                    <?php foreach($categorias as $cat): ?>
+                        <a href="/mixteco/diccionario?categoria=<?= $cat['id'] ?>" 
+                           class="cat-link <?= (isset($_GET['categoria']) && $_GET['categoria'] == $cat['id']) ? 'active' : '' ?>">
+                            <?= htmlspecialchars($cat['nombre']) ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
             </div>
+            <button class="nav-btn next" onclick="scrollCarousel('cat-filters', 200)"><i class="fas fa-chevron-right"></i></button>
         </div>
         
-        <div class="alphabet-container">
-            <div class="alphabet-list">
-                <?php 
-                $letras = range('A', 'Z');
-                foreach($letras as $l): 
-                    $activeClass = (isset($_GET['letra']) && $_GET['letra'] == $l) ? 'active' : '';
-                ?>
-                    <a href="/mixteco/diccionario?letra=<?= $l ?><?= isset($_GET['categoria']) ? '&categoria='.$_GET['categoria'] : '' ?>" 
-                       class="alphabet-link <?= $activeClass ?>"><?= $l ?></a>
-                <?php endforeach; ?>
-                <a href="/mixteco/diccionario" class="alphabet-link">Todas</a>
+        <div class="carousel-wrapper">
+            <button class="nav-btn prev" onclick="scrollCarousel('alpha-list', -200)"><i class="fas fa-chevron-left"></i></button>
+            <div class="alphabet-container" id="alpha-list">
+                <div class="alphabet-list">
+                    <?php 
+                    $letras = range('A', 'Z');
+                    foreach($letras as $l): 
+                        $activeClass = (isset($_GET['letra']) && $_GET['letra'] == $l) ? 'active' : '';
+                    ?>
+                        <a href="/mixteco/diccionario?letra=<?= $l ?><?= isset($_GET['categoria']) ? '&categoria='.$_GET['categoria'] : '' ?>" 
+                           class="alphabet-link <?= $activeClass ?>"><?= $l ?></a>
+                    <?php endforeach; ?>
+                    <a href="/mixteco/diccionario" class="alphabet-link">Todas</a>
+                </div>
             </div>
+            <button class="nav-btn next" onclick="scrollCarousel('alpha-list', 200)"><i class="fas fa-chevron-right"></i></button>
         </div>
         
         <div class="words-container">

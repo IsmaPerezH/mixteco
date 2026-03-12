@@ -39,3 +39,13 @@ function closeModal(modalId) {
         modal.style.display = "none";
     }
 }
+
+function scrollCarousel(id, distance) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.scrollBy({
+            left: distance,
+            behavior: 'smooth'
+        });
+    }
+}
