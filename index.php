@@ -1,9 +1,7 @@
 <?php
-// Enrutador Simple
 $request = $_SERVER['REQUEST_URI'];
 $basePath = '/mixteco';
 
-// Remover el basePath y cualquier query string
 $path = parse_url(str_replace($basePath, '', $request), PHP_URL_PATH);
 
 if ($path == '' || $path == '/' || $path == '/index.php') {
