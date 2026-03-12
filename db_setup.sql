@@ -1,0 +1,15 @@
+CREATE DATABASE IF NOT EXISTS mixteco_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE mixteco_db;
+
+CREATE TABLE IF NOT EXISTS categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS diccionario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    espanol VARCHAR(100) NOT NULL,
+    mixteco VARCHAR(100) NOT NULL,
+    categoria_id INT,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE SET NULL
+);

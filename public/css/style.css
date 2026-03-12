@@ -45,6 +45,15 @@ body {
     align-items: center;
 }
 
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--header-blue);
+}
+
 .logo a {
     font-size: 1.3rem;
     font-weight: 700;
@@ -267,8 +276,52 @@ body {
 }
 
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        padding: 1.5rem;
+        gap: 1.5rem;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a, .dropbtn {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background-color: #f9fafb;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
     .info-content-flex {
         flex-direction: column;
+        text-align: center;
     }
 
     .info-content-flex img {
@@ -276,12 +329,70 @@ body {
         height: auto;
     }
 
+    .info-card {
+        padding: 1.5rem;
+    }
+
     .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .contact-info {
+        align-items: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    /* Diccionario Móvil */
+    .search-box {
+        width: 100%;
+    }
+
+    .alphabet-list {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 1rem;
+        white-space: nowrap;
+    }
+
+    .category-filters {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 0.5rem;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+    }
+
+    /* Historias y Leyendas Móvil */
+    .historias-grid {
         grid-template-columns: 1fr;
     }
 
-    .nav-links {
-        display: none;
+    .historia-card {
+        flex-direction: column;
+    }
+
+    .historia-img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+
+    .modal-body p {
+        font-size: 1.1rem;
+    }
+
+    /* Gastronomía Móvil */
+    .gastro-card {
+        flex: 0 0 200px;
     }
 }
 
@@ -625,21 +736,108 @@ body {
     color: #000;
 }
 
-@media (max-width: 768px) {
-    .historias-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .historia-card {
-        flex-direction: column;
-    }
 
-    .historia-img {
-        width: 100%;
-        height: 200px;
-    }
+/* Diccionario Mejorado - Filtros */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
 
-    .modal-content {
-        width: 90%;
-    }
+.category-filters {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+}
+
+.cat-link {
+    text-decoration: none;
+    background-color: #ffffff;
+    color: var(--text-main);
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.cat-link:hover, .cat-link.active {
+    background-color: var(--header-blue);
+    color: #ffffff;
+    border-color: var(--header-blue);
+}
+
+/* Ajustes de Diccionario en style.css */
+.alphabet-link {
+    text-decoration: none;
+    color: #374151;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.alphabet-link:hover, .alphabet-link.active {
+    background-color: #E5E7EB;
+    color: #1D4ED8;
+}
+
+.words-grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.word-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 0.8rem;
+    border-left: 5px solid var(--header-blue);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.word-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.word-mixteco {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--header-blue);
+}
+
+.word-espanol {
+    font-size: 1.1rem;
+    color: #4B5563;
+}
+
+.category-tag {
+    background: #f3f4f6;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    color: #6b7280;
+    font-weight: 600;
+}
+
+.no-results {
+    text-align: center; 
+    width: 100%; 
+    padding: 3rem;
+    color: #9ca3af;
+}
+
+.no-results i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
 }

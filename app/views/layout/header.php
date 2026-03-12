@@ -16,7 +16,10 @@
             <div class="logo">
                 <a href="/mixteco/">San Miguel el Grande</a>
             </div>
-            <nav class="nav-links">
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
                 <div class="dropdown">
                     <button class="dropbtn">ES <i class="fas fa-chevron-down"></i></button>
                     <div class="dropdown-content">
