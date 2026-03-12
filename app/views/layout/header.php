@@ -7,10 +7,8 @@
     <!-- Colores y Tipo de Letras copiados de radio.html -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="public/css/style.css">
-    <link rel="stylesheet" href="public/css/diccionario.css">
-    <link rel="stylesheet" href="public/css/historia.css">
-    <link rel="stylesheet" href="public/css/gastronomia.css">
+    <link rel="stylesheet" href="/mixteco/public/css/style.css">
+
 </head>
 <body>
     <header class="main-header">

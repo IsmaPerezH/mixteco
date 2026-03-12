@@ -5,7 +5,7 @@
         <div class="historias-grid">
             <!-- Card 1 -->
             <div class="historia-card">
-                <img src="public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
+                <img src="/mixteco/public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
                 <div class="historia-content">
                     <p class="historia-text">En la época prehispánica estos pueblos pertenecieron al reinado de Achiutla y en la época colonial, primero pertenecieron... <span class="leer-mas" onclick="openModal('modal-leyenda-1')">Leer mas</span></p>
                 </div>
@@ -13,7 +13,7 @@
 
             <!-- Card 2 -->
             <div class="historia-card">
-                <img src="public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
+                <img src="/mixteco/public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
                 <div class="historia-content">
                     <p class="historia-text">En la época prehispánica estos pueblos pertenecieron al reinado de Achiutla y en la época colonial, primero pertenecieron... <span class="leer-mas" onclick="openModal('modal-leyenda-1')">Leer mas</span></p>
                 </div>
@@ -21,7 +21,7 @@
 
             <!-- Card 3 -->
             <div class="historia-card">
-                <img src="public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
+                <img src="/mixteco/public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
                 <div class="historia-content">
                     <p class="historia-text">En la época prehispánica estos pueblos pertenecieron al reinado de Achiutla y en la época colonial, primero pertenecieron... <span class="leer-mas" onclick="openModal('modal-leyenda-1')">Leer mas</span></p>
                 </div>
@@ -29,7 +29,7 @@
 
             <!-- Card 4 -->
             <div class="historia-card">
-                <img src="public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
+                <img src="/mixteco/public/img/iglesia.jpg" alt="Iglesia" class="historia-img">
                 <div class="historia-content">
                     <p class="historia-text">En la época prehispánica estos pueblos pertenecieron al reinado de Achiutla y en la época colonial, primero pertenecieron... <span class="leer-mas" onclick="openModal('modal-leyenda-1')">Leer mas</span></p>
                 </div>
@@ -45,9 +45,9 @@
         <div class="modal-header">
             <h2>Leyenda de San Miguel El Grande</h2>
         </div>
-        <img src="public/img/iglesia.jpg" alt="Mitos y Leyendas" class="modal-img">
+        <img src="/mixteco/public/img/iglesia.jpg" alt="Mitos y Leyendas" class="modal-img">
         <div class="modal-body">
-            <p>Aquí irá el relato completo de la leyenda seleccionada, siguiendo el diseño solicitado en la imagen anterior.</p>
+            <p>Aquí irá el relato completo de la leyenda seleccionada, enviando el estilo visual a traves de la ruta absoluta.</p>
         </div>
     </div>
 </div>

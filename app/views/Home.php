@@ -17,7 +17,7 @@
                     <p>En el estado de Oaxaca, la Mixteca comprende 189 municipios de los distritos de Silacayoapan, Huajuapan, Juxtlahuaca, Coixtlahuaca, Nochixtlán, Teposcolula, Tlaxiaco, Putla y Jamiltepec, así como 14 municipios más que pertenecen a los distritos de Cuicatlán, Zaachila, Sola de Vega, Etla, Juquila y Teotitlán. De este modo, puede decirse que el territorio histórico mixteco de Oaxaca está conformado por 203 municipios.</p>
                     <p style="font-size: 0.85rem; color: #6b7280; font-style: italic; margin-top: 1rem;">Mixtecos - Etnografía - Atlas de los Pueblos Indígenas de México. INPI</p>
                 </div>
-                <img src="public/img/cultura.jpg" alt="Territorio Mixteco">
+                <img src="/mixteco/public/img/cultura.jpg" alt="Territorio Mixteco">
             </div>
 
             <hr style="border:none; border-top: 1px solid #e5e7eb; margin: 2rem 0;">
@@ -30,7 +30,7 @@
                     <p>El mixteco pertenece a la familia otomangue y existen variantes por regiones.</p>
                     <p>En el municipio de San Miguel el Grande las lenguas indígenas más habladas son Mixteco con 2009 habitantes, Zapoteco con 20 habitantes y Mixe con 14 habitantes en la población de 5 años y más, de acuerdo con el Censo de población y vivienda 2020.</p>
                 </div>
-                <img src="public/img/reloj.jpg" alt="Lengua y Población">
+                <img src="/mixteco/public/img/reloj.jpg" alt="Lengua y Población">
             </div>
         </div>
     </section>
