@@ -92,4 +92,29 @@ INSERT INTO `historias` (`titulo`, `tipo`, `resumen`, `contenido`, `etiqueta`) V
 'En ciertas noches silenciosas, los habitantes aseguran escuchar las campanas del antiguo templo sonar sin que nadie esté en la iglesia. Los ancianos dicen que son las almas de antiguos pobladores que regresan a rezar o recordar su pueblo. Este fenómeno ha sido contado por generaciones como parte de las tradiciones del lugar.', 
 'Relato Popular');
 
+INSERT INTO historias_imagenes (historia_id, url_imagen) VALUES
+(3, '/mixteco/public/img/image.jpg'),
+(3, '/mixteco/public/img/image2.jpg'),
+
+(4, '/mixteco/public/img/iglesia.jpg'),
+(4, '/mixteco/public/img/image.jpg'),
+
+(5, '/mixteco/public/img/paisaje_origen.jpg'),
+(5, '/mixteco/public/img/image2.jpg'),
+
+(6, '/mixteco/public/img/image.jpg'),
+(6, '/mixteco/public/img/image2.jpg'),
+(6, '/mixteco/public/img/iglesia.jpg'),
+
+(7, '/mixteco/public/img/paisaje_origen.jpg'),
+(7, '/mixteco/public/img/image.jpg'),
+
+(8, '/mixteco/public/img/image2.jpg'),
+(8, '/mixteco/public/img/iglesia.jpg'),
+(8, '/mixteco/public/img/paisaje_origen.jpg'),
+
+(9, '/mixteco/public/img/image.jpg'),
+(9, '/mixteco/public/img/image2.jpg'),
+(9, '/mixteco/public/img/iglesia.jpg');
+
 COMMIT;
