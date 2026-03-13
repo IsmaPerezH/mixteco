@@ -288,7 +288,7 @@ body {
         left: 0;
         width: 100%;
         background-color: #ffffff;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
         gap: 1.5rem;
         z-index: 1000;
@@ -298,7 +298,8 @@ body {
         display: flex;
     }
 
-    .nav-links a, .dropbtn {
+    .nav-links a,
+    .dropbtn {
         width: 100%;
         justify-content: space-between;
     }
@@ -364,7 +365,8 @@ body {
         padding: 0.5rem;
         white-space: nowrap;
         flex-wrap: nowrap;
-        -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+        -webkit-overflow-scrolling: touch;
+        /* Scroll suave en iOS */
     }
 
     /* Historias y Leyendas Móvil */
@@ -604,65 +606,6 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Historias */
-.historias-main {
-    padding: 3rem 0;
-}
-
-.container-historias {
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.historias-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 3rem;
-    color: #000;
-}
-
-.historias-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-}
-
-.historia-card {
-    background-color: #e5e5e5;
-    border-radius: 1rem;
-    display: flex;
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-}
-
-.historia-img {
-    width: 250px;
-    object-fit: cover;
-}
-
-.historia-content {
-    padding: 1.5rem;
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.historia-text {
-    font-size: 1.1rem;
-    line-height: 1.4;
-    color: #000;
-}
-
-.leer-mas {
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.leer-mas:hover {
-    text-decoration: underline;
-}
-
 /* Modal */
 .modal {
     display: none;
@@ -761,12 +704,13 @@ body {
     border-radius: 2rem;
     font-size: 0.9rem;
     font-weight: 600;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     border: 1px solid #e5e7eb;
 }
 
-.cat-link:hover, .cat-link.active {
+.cat-link:hover,
+.cat-link.active {
     background-color: var(--header-blue);
     color: #ffffff;
     border-color: var(--header-blue);
@@ -782,7 +726,8 @@ body {
     font-weight: 500;
 }
 
-.alphabet-link:hover, .alphabet-link.active {
+.alphabet-link:hover,
+.alphabet-link.active {
     background-color: #E5E7EB;
     color: #1D4ED8;
 }
@@ -799,7 +744,7 @@ body {
     padding: 1.5rem;
     border-radius: 0.8rem;
     border-left: 5px solid var(--header-blue);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .word-header-flex {
@@ -830,8 +775,8 @@ body {
 }
 
 .no-results {
-    text-align: center; 
-    width: 100%; 
+    text-align: center;
+    width: 100%;
     padding: 3rem;
     color: #9ca3af;
 }

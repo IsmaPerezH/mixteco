@@ -24,6 +24,10 @@ if ($path == '' || $path == '/' || $path == '/index.php') {
     require_once 'app/controllers/GastronomiaController.php';
     $controller = new GastronomiaController();
     $controller->index();
+} else if ($path == '/historias/getDatosDinamicos') {
+    require_once 'app/controllers/HistoriasController.php';
+    $controller = new HistoriasController();
+    $controller->getDatosDinamicos();
 } else {
     http_response_code(404);
     echo "<h1>404 - Página no encontrada</h1>";
