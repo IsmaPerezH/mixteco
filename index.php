@@ -24,6 +24,10 @@ if ($path == '' || $path == '/' || $path == '/index.php') {
     require_once 'app/controllers/GastronomiaController.php';
     $controller = new GastronomiaController();
     $controller->index();
+} else if ($path == '/lugares') {
+    require_once 'app/controllers/LugaresController.php';
+    $controller = new LugaresController();
+    $controller->index();
 } else if ($path == '/historias/getDatosDinamicos') {
     require_once 'app/controllers/HistoriasController.php';
     $controller = new HistoriasController();

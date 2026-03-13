@@ -38,7 +38,7 @@
                 <div class="dropdown">
                     <button class="dropbtn">Turismo <i class="fas fa-chevron-down"></i></button>
                     <div class="dropdown-content">
-                        <a href="#">Lugares</a>
+                        <a href="/mixteco/lugares">Lugares</a>
                         <a href="/mixteco/gastronomia">Gastronomía</a>
                     </div>
                 </div>
