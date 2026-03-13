@@ -1,0 +1,389 @@
+/* Lugares Styles - inspirado en Gastronomía */
+
+/* Hero Section */
+.hero-lugares {
+    width: 100%;
+    height: 250px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/mixteco/public/img/ima_lugares/san%20miguel.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-color: #2C3E50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-lugares .hero-title {
+    color: #FFFFFF;
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin: 0;
+    padding: 0 20px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+
+.container-lugares {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section Titles */
+.lugares-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.lugares-section-title {
+    font-size: 2.2rem;
+    color: #2C3E50;
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid #E2E8F0;
+    padding-bottom: 10px;
+}
+
+.lugares-carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+}
+
+.lugares-nav-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 999px;
+    border: 2px solid #C05621;
+    background: radial-gradient(circle at 30% 30%, #FFF7ED 0%, #FDE7D3 45%, #F3C6A6 100%);
+    color: #C05621;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.18);
+}
+
+.lugares-nav-btn:hover {
+    background: #C05621;
+    color: #FFFFFF;
+    border-color: #9A3E1B;
+    transform: translateY(-50%) scale(1.06);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.22);
+}
+
+.lugares-nav-btn i {
+    font-size: 1.15rem;
+}
+
+.lugares-nav-left {
+    left: -18px;
+}
+
+.lugares-nav-right {
+    right: -18px;
+}
+
+/* Carrusel Horizontal */
+.lugares-grid {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    margin-bottom: 40px;
+    padding: 0 12px 1.5rem 12px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding: 36px;
+}
+
+.lugares-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.lugares-grid::-webkit-scrollbar-thumb {
+    background: #D1D5DB;
+    border-radius: 4px;
+}
+
+/* Card Design */
+.lugares-card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+}
+
+.lugares-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.lugares-img-container {
+    height: 200px;
+    width: 100%;
+    overflow: hidden;
+    background-color: #E2E8F0;
+}
+
+.lugares-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.lugares-card:hover .lugares-img-container img {
+    transform: scale(1.05);
+}
+
+/* Card Content */
+.lugares-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.lugares-card-title {
+    font-size: 1.4rem;
+    color: #2C3E50;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.lugares-text {
+    font-size: 0.95rem;
+    color: #4A5568;
+    line-height: 1.6;
+    margin: 0 0 20px 0;
+    flex-grow: 1;
+}
+
+/* Ghost Button */
+.btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    background-color: transparent;
+    border: 1px solid #C05621;
+    color: #C05621;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    align-self: flex-start;
+}
+
+.lugares-card:hover .btn-ghost {
+    background-color: #C05621;
+    color: #FFFFFF;
+}
+
+.lugares-card:hover .btn-ghost i {
+    transform: translateX(4px);
+}
+
+.btn-ghost i {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+/* Modal Origen */
+.lugares-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.lugares-modal.is-open {
+    display: block;
+}
+
+.lugares-modal-content {
+    background-color: #FFFFFF;
+    margin: 5% auto;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    animation: lugaresModalFadeIn 0.3s ease-out;
+}
+
+@keyframes lugaresModalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.lugares-modal-header {
+    padding: 20px 24px;
+    background-color: #F8F9FA;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lugares-modal-header h2 {
+    color: #2C3E50;
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.lugares-modal-media {
+    width: 100%;
+    background-color: #1E293B;
+    max-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lugares-modal-media img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+.lugares-modal-body {
+    padding: 24px;
+}
+
+.lugares-modal-field {
+    margin-bottom: 16px;
+}
+
+.lugares-modal-field:last-child {
+    margin-bottom: 0;
+}
+
+.lugares-modal-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #4A5568;
+    margin-bottom: 6px;
+}
+
+.lugares-modal-body p {
+    margin: 0;
+    color: #4A5568;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.lugares-modal-map {
+    width: 100%;
+    height: 240px;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #F8FAFC;
+}
+
+.lugares-modal-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+.lugares-modal-close {
+    color: #A0AEC0;
+    font-size: 28px;
+    font-weight: bold;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.lugares-modal-close:hover,
+.lugares-modal-close:focus {
+    color: #2D3748;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-lugares {
+        height: 300px;
+    }
+
+    .hero-lugares .hero-title {
+        font-size: 2.2rem;
+    }
+
+    .lugares-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .lugares-section-title {
+        width: 100%;
+    }
+
+    .lugares-nav-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .lugares-nav-left {
+        left: -10px;
+    }
+
+    .lugares-nav-right {
+        right: -10px;
+    }
+
+    .lugares-nav-btn i {
+        font-size: 1rem;
+    }
+
+    .lugares-carousel {
+        padding: 0 18px;
+    }
+
+    .lugares-card {
+        flex: 0 0 220px;
+    }
+}
