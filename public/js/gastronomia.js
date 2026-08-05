@@ -37,7 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalText.textContent = text || 'Sin origen disponible.';
         }
         if (modalImg) {
-            modalImg.src = image || '/mixteco/public/img/Pozole-blanco.jpg';
+            const basePath = document.documentElement.dataset.basepath || '';
+            modalImg.src = image || basePath + '/public/img/Pozole-blanco.jpg';
             modalImg.alt = title || 'Imagen';
         }
         modal.classList.add('is-open');

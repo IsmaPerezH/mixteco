@@ -11,7 +11,7 @@ class GastronomiaModel {
 
     public function getByCategoria($categoria) {
         $sql = "SELECT id, nombre, resumen, origen, categoria, imagen
-                FROM gartronomia
+                FROM gastronomia
                 WHERE categoria = ?
                 ORDER BY nombre ASC";
 

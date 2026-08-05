@@ -1,68 +1,48 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Servidor: 127.0.0.1
--- Tiempo de generación: 12-03-2026 a las 21:18:28
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- ========================================================
+-- Base de Datos Unificada: mixteco_db
+-- Proyecto: Tu'un Savi / San Miguel el Grande
+-- ========================================================
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE DATABASE IF NOT EXISTS `mixteco_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `mixteco_db`;
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `mixteco_db`
---
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categorias`
---
-
+-- 1. Tabla: categorias
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `categorias`;
 CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_categoria_nombre` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `categorias`
---
 
 INSERT INTO `categorias` (`id`, `nombre`) VALUES
-(4, 'Animales domésticos'),
-(3, 'Animales silvestres'),
-(6, 'Árboles'),
-(8, 'Climas'),
 (1, 'Colores'),
-(7, 'Meses'),
 (2, 'Números'),
-(9, 'Partes del cuerpo'),
-(5, 'Saludos');
+(3, 'Animales silvestres'),
+(4, 'Animales domésticos'),
+(5, 'Saludos'),
+(6, 'Árboles'),
+(7, 'Meses'),
+(8, 'Climas'),
+(9, 'Partes del cuerpo');
 
 -- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `diccionario`
---
-
+-- 2. Tabla: diccionario
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `diccionario`;
 CREATE TABLE `diccionario` (
-  `id` int(11) NOT NULL,
-  `espanol` varchar(100) NOT NULL,
-  `mixteco` varchar(100) NOT NULL,
-  `categoria_id` int(11) DEFAULT NULL
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `espanol` VARCHAR(100) NOT NULL,
+  `mixteco` VARCHAR(100) NOT NULL,
+  `categoria_id` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_diccionario_categoria` (`categoria_id`),
+  CONSTRAINT `fk_diccionario_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `diccionario`
---
 
 INSERT INTO `diccionario` (`id`, `espanol`, `mixteco`, `categoria_id`) VALUES
 (1, 'blanco', 'Kuijín', 1),
@@ -250,51 +230,118 @@ INSERT INTO `diccionario` (`id`, `espanol`, `mixteco`, `categoria_id`) VALUES
 (183, 'Ombligo', 'Xentu', 9),
 (184, 'Vientre', 'Toko', 9);
 
---
--- Índices para tablas volcadas
---
+-- --------------------------------------------------------
+-- 3. Tabla: gastronomia (Corregido typo de gartronomia)
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `gastronomia`;
+CREATE TABLE `gastronomia` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `nombre` VARCHAR(150) NOT NULL,
+  `resumen` TEXT NOT NULL,
+  `origen` VARCHAR(255) NULL,
+  `categoria` ENUM('comida', 'bebida') NOT NULL,
+  `imagen` VARCHAR(255) NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Indices de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
+INSERT INTO `gastronomia` (`nombre`, `resumen`, `origen`, `categoria`, `imagen`) VALUES
+('Pozole blanco', 'Caldo tradicional con maíz y carne, muy representativo.', 'San Miguel el Grande', 'comida', 'Pozole-blanco.jpg'),
+('Xtabentún', 'Licor dulce y anisado elaborado con miel de abejas meliponas.', 'Leyenda maya: Se dice que surgió de la tumba de Xtabay, una mujer de noble corazón.', 'bebida', 'xtabentun.jpg'),
+('Pulque', 'Bebida fermentada del maguey, conocida como la "bebida de los dioses".', 'Leyenda mexica: Quetzalcóatl, al ver a los hombres tristes, buscó a Mayahuel, diosa de la fertilidad.', 'bebida', 'pulque.jpg'),
+('Agua de Obispo', 'Bebida refrescante de Cuaresma hecha con remolacha, frutas y cacahuates.', 'Se originó en el siglo XVI en Zacatecas.', 'bebida', 'agua-obispo.jpg'),
+('Balché', 'Bebida fermentada sagrada para la cultura maya, elaborada con corteza del árbol de balché.', 'Es una bebida ceremonial de origen prehispánico.', 'bebida', 'balche.jpg'),
+('Tequila', 'Destilado del agave azul, la bebida emblemática de México por excelencia.', 'Es una "bebida mestiza" que nació en la región de Tequila, Jalisco.', 'bebida', 'tequila.jpg'),
+('Mole poblano', 'Compleja salsa de chiles, especias y chocolate, servida sobre guajolote o pollo.', 'Leyenda novohispana: En el siglo XVII, Sor Andrea de la Asunción preparó este guiso en Puebla.', 'comida', 'mole-poblano.jpg'),
+('Tamales', 'Masa de maíz rellena de carne, chiles, verduras o frutas, envuelta en hojas de maíz o plátano.', 'Época prehispánica: Los tamales tienen un origen ritual y sagrado.', 'comida', 'tamales.jpg'),
+('Barbacoa de hoyo', 'Carne de borrego envuelta en pencas de maguey, cocida lentamente en un horno subterráneo.', 'Tradición prehispánica: Originaria del estado de Hidalgo.', 'comida', 'barbacoa-borrego.jpg'),
+('Tlayuda', 'Tortilla de maíz grande y crujiente, cubierta con frijoles, tasajo, chorizo, queso y salsa.', 'Tradición oaxaqueña: Conocida como la "pizza mexicana", originaria de los Valles Centrales de Oaxaca.', 'comida', 'tlayuda.jpg');
 
---
--- Indices de la tabla `diccionario`
---
-ALTER TABLE `diccionario`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `categoria_id` (`categoria_id`);
+-- --------------------------------------------------------
+-- 4. Tabla: historias (Corregido ENUM para permitir 'mito')
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `historias`;
+CREATE TABLE `historias` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(255) NOT NULL,
+  `tipo` ENUM('historia','leyenda','mito') NOT NULL DEFAULT 'historia',
+  `resumen` VARCHAR(500) DEFAULT NULL,
+  `contenido` TEXT NOT NULL,
+  `etiqueta` VARCHAR(50) DEFAULT NULL,
+  `creado_en` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
+INSERT INTO `historias` (`id`, `titulo`, `tipo`, `resumen`, `contenido`, `etiqueta`) VALUES
+(1, 'Los orígenes de Achiutla', 'historia', 'En la época prehispánica estos pueblos pertenecieron al reinado de Achiutla...', 'En la época prehispánica estos pueblos pertenecieron al reinado de Achiutla y en la época colonial, primero pertenecieron a la encomienda de Francisco de las Casas, después pasaron a la corona española. Se relata la fundación del pueblo y el sincretismo cultural que dió origen a San Miguel el Grande.', 'Historia Local'),
+(2, 'El Llano de Borrego', 'leyenda', 'Cuentan que anteriormente este lugar se llamó llano de Borrego, inhabitado en aquel entonces y pastaban los animales...', 'En 1904, cuentan que anteriormente, este lugar se llamó llano de Borrego. El llano de Borrego estaba inhabitado en aquel entonces y como se pueden imaginar solo existía un llano en donde pastaban los animales principalmente los borregos. Un día una persona respetada platicó con los demás habitantes y les propuso la de idea comprar un santo en bulto para el lugar, el santo de nombre "El padre de Jesús de las tres caídas".', 'Leyenda Tradicional'),
+(3, 'El Mogote Sagrado', 'historia', 'En la comunidad cercana a San Miguel el Grande existe un antiguo sitio arqueológico conocido como El Mogote.', 'En las montañas cercanas a San Miguel el Grande se encuentra un sitio arqueológico conocido como El Mogote. Según los ancianos del lugar, este sitio fue un antiguo asentamiento mixteco donde vivieron gobernantes y sacerdotes.', 'Historia Local'),
+(4, 'El Flechador del Sol', 'mito', 'Un antiguo mito mixteco cuenta la historia de un héroe que desafió al Sol para conquistar la tierra de la Mixteca.', 'Según la tradición mixteca, un héroe llamado Dzahuindanda nació en el árbol sagrado de Apoala. Cuando su pueblo buscaba un lugar para vivir, descubrió que la tierra de la Mixteca estaba dominada por el Sol. Para poder habitarla, desafió al astro en combate y logró vencerlo con sus flechas.', 'Mitología Mixteca'),
+(5, 'La Cueva de los Espíritus', 'leyenda', 'En los cerros cercanos al pueblo existe una cueva donde, según los ancianos, habitan los espíritus antiguos.', 'Cuenta la leyenda que en uno de los cerros cercanos a San Miguel el Grande existe una cueva profunda donde habitan los espíritus de los antiguos habitantes mixtecos.', 'Leyenda Local'),
+(6, 'El Nahual del Cerro', 'leyenda', 'Durante generaciones los habitantes han contado historias sobre un nahual que habita en los cerros.', 'Los pobladores cuentan que hace muchos años un hombre tenía la capacidad de transformarse en animal durante la noche. Este nahual se convertía en coyote o perro grande y caminaba por los cerros vigilando el pueblo.', 'Leyenda'),
+(7, 'El Oráculo de Achiutla', 'historia', 'Achiutla fue considerado un centro sagrado en la época prehispánica donde existía un importante oráculo.', 'Antes de la llegada de los españoles, Achiutla fue uno de los centros religiosos más importantes de la cultura mixteca. En este lugar existía un oráculo donde los sacerdotes realizaban ceremonias y consultas espirituales.', 'Historia Mixteca'),
+(8, 'El Tesoro Enterrado del Convento', 'leyenda', 'Se dice que durante la época colonial algunos tesoros fueron escondidos cerca del antiguo convento.', 'Cuando los españoles llegaron a la región y construyeron el convento dominico en Achiutla, algunos habitantes escondieron sus riquezas para evitar que fueran tomadas.', 'Leyenda Colonial'),
+(9, 'El Espíritu del Antiguo Campanario', 'leyenda', 'Algunos habitantes dicen escuchar las campanas de la iglesia sonar durante la madrugada.', 'En ciertas noches silenciosas, los habitantes aseguran escuchar las campanas del antiguo templo sonar sin que nadie esté en la iglesia.', 'Relato Popular');
 
---
--- AUTO_INCREMENT de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+-- --------------------------------------------------------
+-- 5. Tabla: historias_imagenes (Rutas relativas limpias)
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `historias_imagenes`;
+CREATE TABLE `historias_imagenes` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `historia_id` INT(11) NOT NULL,
+  `url_imagen` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_historia` (`historia_id`),
+  CONSTRAINT `fk_historia_imagenes` FOREIGN KEY (`historia_id`) REFERENCES `historias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- AUTO_INCREMENT de la tabla `diccionario`
---
-ALTER TABLE `diccionario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+INSERT INTO `historias_imagenes` (`historia_id`, `url_imagen`) VALUES
+(1, '/public/img/iglesia.jpg'),
+(1, '/public/img/paisaje_origen.jpg'),
+(2, '/public/img/iglesia.jpg'),
+(3, '/public/img/image.jpg'),
+(3, '/public/img/image2.jpg'),
+(4, '/public/img/iglesia.jpg'),
+(4, '/public/img/image.jpg'),
+(5, '/public/img/paisaje_origen.jpg'),
+(5, '/public/img/image2.jpg'),
+(6, '/public/img/image.jpg'),
+(6, '/public/img/image2.jpg'),
+(6, '/public/img/iglesia.jpg'),
+(7, '/public/img/paisaje_origen.jpg'),
+(7, '/public/img/image.jpg'),
+(8, '/public/img/image2.jpg'),
+(8, '/public/img/iglesia.jpg'),
+(8, '/public/img/paisaje_origen.jpg'),
+(9, '/public/img/image.jpg'),
+(9, '/public/img/image2.jpg'),
+(9, '/public/img/iglesia.jpg');
 
---
--- Restricciones para tablas volcadas
---
+-- --------------------------------------------------------
+-- 6. Tabla: lugares
+-- --------------------------------------------------------
+DROP TABLE IF EXISTS `lugares`;
+CREATE TABLE `lugares` (
+  `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `nombre` VARCHAR(150) NOT NULL,
+  `resumen` TEXT NOT NULL,
+  `origen` VARCHAR(150) NULL,
+  `ubicacion` TEXT NULL,
+  `como_llegar` TEXT NULL,
+  `categoria` ENUM('naturales', 'culturales') NOT NULL,
+  `imagen` VARCHAR(255) NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Filtros para la tabla `diccionario`
---
-ALTER TABLE `diccionario`
-  ADD CONSTRAINT `diccionario_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`) ON DELETE SET NULL;
-COMMIT;
+INSERT INTO `lugares` (`nombre`, `resumen`, `origen`, `ubicacion`, `como_llegar`, `categoria`, `imagen`) VALUES
+('Mirador Adan Aparicio', 'Mirador natural con vista panorámica.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d36135.61364334841!2d-97.65652296706615!3d17.037597080027627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d21cb0d027f9%3A0x7a9ab6b541095197!2sMirador%20Adan%20Aparicio!5e1!3m2!1ses!2smx!4v1773411712032!5m2!1ses!2smx', 'Subir por el camino de terracería, Pasando el tecnologico.', 'naturales', 'cerro-sol.jpg'),
+('Iglesia de San Miguel Arcángel', 'Cultural de San Miguel el Grande.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2184.123621176802!2d-97.62315307238542!3d17.046224640049648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d1f0add4653d%3A0xa7fe0f44d593657e!2sIglesia%20de%20San%20Miguel%20Arc%C3%A1ngel!5e1!3m2!1ses!2smx!4v1773413227122!5m2!1ses!2smx', 'Ha 10 metros del palacio municipal.', 'culturales', 'inglesia.jpg'),
+('Casa de la Cultura', 'La Casa de la Cultura es el corazón cultural de San Miguel el Grande.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2184.123621176802!2d-97.62315307238542!3d17.046224640049648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d1f0add4653d%3A0xa7fe0f44d593657e!2sIglesia%20de%20San%20Miguel%20Arc%C3%A1ngel!5e1!3m2!1ses!2smx!4v1773413227122!5m2!1ses!2smx', 'Ha 10 metros del palacio municipal.', 'culturales', 'casa-cultura.jpg'),
+('Cascada Esmeralda', 'Impresionante caída de agua de 30 metros con pozas de color turquesa.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.123456789012!2d-97.61234567890123!3d17.02345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d1a1b2c3d4e5%3A0xf6e7d8c9b0a1f2e3!2sCascada%20Esmeralda!5e1!3m2!1ses!2smx!4v1773413227123!5m2!1ses!2smx', '15 minutos en auto desde el centro, luego 10 minutos caminando por sendero.', 'naturales', 'cascada-esmeralda.jpg'),
+('Museo Comunitario', 'Espacio que resguarda piezas arqueológicas y tradiciones de la región.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.234567890123!2d-97.63456789012345!3d17.03456789012345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d1b2c3d4e5f6%3A0xa1b2c3d4e5f6a7b8!2sMuseo%20Comunitario!5e1!3m2!1ses!2smx!4v1773413227124!5m2!1ses!2smx', 'Junto a la plaza principal, a un costado del palacio municipal.', 'culturales', 'museo-comunitario.jpg'),
+('Mirador del Cerro', 'Punto panorámico con vista de 360 grados del valle y el pueblo.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.345678901234!2d-97.64567890123456!3d17.04567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d1c3d4e5f6a7%3A0xb2c3d4e5f6a7b8c9!2sMirador%20del%20Cerro!5e1!3m2!1ses!2smx!4v1773413227125!5m2!1ses!2smx', 'Subir por la calle Independencia hasta el final, luego 200 escalones.', 'naturales', 'mirador-cerro.jpg'),
+('Mercado de Artesanías', 'Mercado tradicional donde artesanos locales venden textiles, barro y alebrijes.', 'San Miguel el Grande', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3860.456789012345!2d-97.65678901234567!3d17.05678901234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c7d1d4e5f6a7b8%3A0xc3d4e5f6a7b8c9d0!2sMercado%20de%20Artesan%C3%ADas!5e1!3m2!1ses!2smx!4v1773413227126!5m2!1ses!2smx', 'Detrás de la iglesia principal, a 5 minutos caminando.', 'culturales', 'mercado-artesanias.jpg');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;

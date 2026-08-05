@@ -1,0 +1,239 @@
+/* ═══════════════════════════════════════════════════
+   components.css  –  Componentes UI  |  Tu'un Savi
+   ═══════════════════════════════════════════════════ */
+
+/* ---------- Greca (step-fret) divider mixteco ---------- */
+.greca-divider {
+  height: 14px;
+  width: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='14' viewBox='0 0 28 14'%3E%3Cpath d='M0 14 L0 4 L4 4 L4 10 L10 10 L10 0 L28 0' fill='none' stroke='%239B2226' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  opacity: 0.75;
+}
+
+/* ---------- Glassmorphism header (para scroll) ---------- */
+.glass-header {
+  backdrop-filter: blur(0px);
+  transition: backdrop-filter 0.3s ease, background 0.3s ease;
+}
+.glass-header.scrolled {
+  backdrop-filter: blur(12px);
+  background: rgba(241, 232, 211, 0.92) !important;
+}
+
+/* ---------- Placa: Palabra del día ---------- */
+.word-plaque {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--paper-dark);
+  border-left: 6px solid var(--turq);
+  border-radius: 4px;
+  box-shadow: var(--shadow-soft);
+  padding: 1.8rem 2rem;
+}
+.word-plaque-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  font-weight: 700;
+  color: var(--turq-dark);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.word-plaque-word {
+  font-family: 'Zilla Slab', serif;
+  font-size: 2.1rem;
+  color: var(--ink);
+  margin: 0 0 0.15rem;
+}
+.word-plaque-es {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+}
+.word-plaque-cat {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  padding: 0.2rem 0.75rem;
+  margin-bottom: 1.1rem;
+}
+.word-plaque-nav {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+.word-plaque-nav button {
+  background: none;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s, color 0.2s;
+}
+.word-plaque-nav button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.word-plaque-note {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* ---------- Accesos rápidos ---------- */
+.quick-access {
+  padding: 3.5rem 0 3rem;
+  background: var(--paper);
+}
+.quick-title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.quick-sub {
+  text-align: center;
+  color: var(--ink-soft);
+  margin-bottom: 2.2rem;
+  font-size: 0.95rem;
+}
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.3rem;
+}
+.quick-card {
+  background: var(--card-bg);
+  border: 1px solid var(--paper-dark);
+  border-radius: 6px;
+  padding: 1.6rem 1.3rem;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.quick-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red);
+  box-shadow: 0 8px 20px rgba(155,34,38,0.1);
+}
+.quick-icon {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 1rem;
+  display: block;
+}
+.quick-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.35rem;
+  color: var(--ink);
+}
+.quick-card p {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Editorial (info-block) ---------- */
+.editorial {
+  padding: 3rem 0;
+  background: var(--paper);
+}
+.info-block {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.info-block.reverse {
+  flex-direction: row-reverse;
+}
+.info-block .info-text {
+  flex: 1;
+}
+.info-block .info-text h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.9rem;
+  color: var(--ink);
+}
+.info-block .info-text p {
+  color: var(--ink-soft);
+  margin-bottom: 0.8rem;
+  font-size: 0.96rem;
+}
+.info-image {
+  flex: 1;
+  height: 240px;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+.info-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+/* ---------- CTA button (legacy) ---------- */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 2px;
+  background: var(--red);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.btn-cta:hover { background: var(--red-dark); }
+
+/* ---------- Card genérica ---------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--paper-dark);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(42,31,26,0.12);
+}
+
+/* ---------- Text utilities ---------- */
+.text-primary   { color: var(--red); }
+.text-secondary { color: var(--turq); }
+.text-accent    { color: var(--gold); }
+
+/* ---------- Grid responsive ---------- */
+.grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .hero-grid    { flex-direction: column; }
+  .quick-grid   { grid-template-columns: repeat(2, 1fr); }
+  .info-block,
+  .info-block.reverse { flex-direction: column; }
+  .info-image   { width: 100%; height: 220px; }
+}
+
+@media (max-width: 600px) {
+  .quick-grid   { grid-template-columns: 1fr 1fr; }
+  .hero-title   { font-size: 2.2rem; }
+  .word-plaque  { padding: 1.2rem 1.2rem; }
+  .footer-grid  { flex-direction: column; }
+}

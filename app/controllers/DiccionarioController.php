@@ -1,52 +1,42 @@
 <?php
-require_once 'app/config/Database.php';
+require_once 'app/models/DiccionarioModel.php';
 
 class DiccionarioController {
     public function index() {
-        $database = new Database();
-        $db = $database->getConnection();
+        global $basePath;
+        $model = new DiccionarioModel();
 
-        // Obtener categorías para el filtro
-        $stmtCat = $db->query("SELECT * FROM categorias ORDER BY nombre ASC");
-        $categorias = $stmtCat->fetchAll(PDO::FETCH_ASSOC);
+        $categorias = $model->getCategorias();
 
-        // Obtener filtros de la URL
         $letra = isset($_GET['letra']) ? $_GET['letra'] : null;
         $q = isset($_GET['q']) ? $_GET['q'] : null;
         $cat_id = isset($_GET['categoria']) ? $_GET['categoria'] : null;
+        $currentPage = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 
-        $query = "SELECT d.*, c.nombre as categoria_nombre 
-                  FROM diccionario d 
-                  LEFT JOIN categorias c ON d.categoria_id = c.id WHERE 1=1";
-        
-        $params = [];
+        $resultado = $model->getPalabrasPaginadas($letra, $q, $cat_id, $currentPage, 10);
 
-        if ($letra) {
-            $query .= " AND (d.espanol LIKE ? OR d.mixteco LIKE ?)";
-            $params[] = $letra . '%';
-            $params[] = $letra . '%';
-        } 
-        
-        if ($q) {
-            $query .= " AND (d.espanol LIKE ? OR d.mixteco LIKE ?)";
-            $params[] = '%' . $q . '%';
-            $params[] = '%' . $q . '%';
-        }
+        $palabras = $resultado['palabras'];
+        $totalWords = $resultado['totalWords'];
+        $totalPages = $resultado['totalPages'];
 
-        if ($cat_id) {
-            $query .= " AND d.categoria_id = ?";
-            $params[] = $cat_id;
-        }
-
-        $query .= " ORDER BY d.espanol ASC";
-        
-        $stmt = $db->prepare($query);
-        $stmt->execute($params);
-        $palabras = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $pageTitle = "Diccionario Mixteco - San Miguel El Grande";
 
         require_once 'app/views/layout/header.php';
         require_once 'app/views/Diccionario.php';
         require_once 'app/views/layout/footer.php';
+    }
+
+    public function buscarAjax() {
+        header('Content-Type: application/json; charset=utf-8');
+        $q = isset($_GET['q']) ? trim($_GET['q']) : '';
+        if (strlen($q) < 2) {
+            echo json_encode([]);
+            exit;
+        }
+        $model = new DiccionarioModel();
+        $resultados = $model->buscarLive($q, 10);
+        echo json_encode($resultados);
+        exit;
     }
 }
 ?>

@@ -6,15 +6,18 @@ function esc_lugares($value) {
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
 }
 
-function lugares_img($value) {
+function lugares_img($value, $basePath = '') {
     $value = $value ?? '';
     if ($value === '') {
-        return '/mixteco/public/img/ima_lugares/san%20miguel.jpeg';
+        return $basePath . '/public/img/ima_lugares/san%20miguel.jpeg';
     }
-    if (preg_match('~^https?://|^/~', $value)) {
+    if (preg_match('~^https?://~', $value)) {
         return $value;
     }
-    return '/mixteco/public/img/ima_lugares/' . $value;
+    if (preg_match('~^/~', $value)) {
+        return $value; // ya es ruta absoluta
+    }
+    return $basePath . '/public/img/ima_lugares/' . $value;
 }
 ?>
 
@@ -38,12 +41,12 @@ function lugares_img($value) {
                         <?php foreach ($lugaresNaturales as $item) : ?>
                             <article class="lugares-card">
                                 <div class="lugares-img-container">
-                                    <img src="<?= esc_lugares(lugares_img($item['imagen'] ?? '')) ?>" alt="<?= esc_lugares($item['nombre'] ?? '') ?>">
+                                    <img src="<?= esc_lugares(lugares_img($item['imagen'] ?? '', $basePath)) ?>" alt="<?= esc_lugares($item['nombre'] ?? '') ?>">
                                 </div>
                                 <div class="lugares-content">
                                     <h3 class="lugares-card-title"><?= esc_lugares($item['nombre'] ?? '') ?></h3>
                                     <p class="lugares-text"><?= esc_lugares($item['resumen'] ?? '') ?></p>
-                                    <button class="btn-ghost lugares-ver-mas" type="button" data-origen="<?= esc_lugares($item['origen'] ?? '') ?>" data-mapa="<?= esc_lugares($item['ubicacion'] ?? '') ?>" data-como="<?= esc_lugares($item['como_llegar'] ?? '') ?>" data-nombre="<?= esc_lugares($item['nombre'] ?? '') ?>" data-imagen="<?= esc_lugares(lugares_img($item['imagen'] ?? '')) ?>">
+                                    <button class="btn-ghost lugares-ver-mas" type="button" data-origen="<?= esc_lugares($item['origen'] ?? '') ?>" data-mapa="<?= esc_lugares($item['ubicacion'] ?? '') ?>" data-como="<?= esc_lugares($item['como_llegar'] ?? '') ?>" data-nombre="<?= esc_lugares($item['nombre'] ?? '') ?>" data-imagen="<?= esc_lugares(lugares_img($item['imagen'] ?? '', $basePath)) ?>">
                                         Ver mas <i class="fas fa-arrow-right"></i>
                                     </button>
                                 </div>
@@ -52,7 +55,7 @@ function lugares_img($value) {
                     <?php else : ?>
                         <article class="lugares-card">
                             <div class="lugares-img-container">
-                                <img src="/mixteco/public/img/ima_lugares/san%20miguel.jpeg" alt="Sin lugares naturales">
+                                    <img src="<?= $basePath ?>/public/img/ima_lugares/san%20miguel.jpeg" alt="Sin lugares naturales">
                             </div>
                             <div class="lugares-content">
                                 <h3 class="lugares-card-title">Sin lugares naturales</h3>
@@ -81,12 +84,12 @@ function lugares_img($value) {
                         <?php foreach ($lugaresCulturales as $item) : ?>
                             <article class="lugares-card">
                                 <div class="lugares-img-container">
-                                    <img src="<?= esc_lugares(lugares_img($item['imagen'] ?? '')) ?>" alt="<?= esc_lugares($item['nombre'] ?? '') ?>">
+                                    <img src="<?= esc_lugares(lugares_img($item['imagen'] ?? '', $basePath)) ?>" alt="<?= esc_lugares($item['nombre'] ?? '') ?>">
                                 </div>
                                 <div class="lugares-content">
                                     <h3 class="lugares-card-title"><?= esc_lugares($item['nombre'] ?? '') ?></h3>
                                     <p class="lugares-text"><?= esc_lugares($item['resumen'] ?? '') ?></p>
-                                    <button class="btn-ghost lugares-ver-mas" type="button" data-origen="<?= esc_lugares($item['origen'] ?? '') ?>" data-mapa="<?= esc_lugares($item['ubicacion'] ?? '') ?>" data-como="<?= esc_lugares($item['como_llegar'] ?? '') ?>" data-nombre="<?= esc_lugares($item['nombre'] ?? '') ?>" data-imagen="<?= esc_lugares(lugares_img($item['imagen'] ?? '')) ?>">
+                                    <button class="btn-ghost lugares-ver-mas" type="button" data-origen="<?= esc_lugares($item['origen'] ?? '') ?>" data-mapa="<?= esc_lugares($item['ubicacion'] ?? '') ?>" data-como="<?= esc_lugares($item['como_llegar'] ?? '') ?>" data-nombre="<?= esc_lugares($item['nombre'] ?? '') ?>" data-imagen="<?= esc_lugares(lugares_img($item['imagen'] ?? '', $basePath)) ?>">
                                         Ver mas <i class="fas fa-arrow-right"></i>
                                     </button>
                                 </div>
@@ -95,7 +98,7 @@ function lugares_img($value) {
                     <?php else : ?>
                         <article class="lugares-card">
                             <div class="lugares-img-container">
-                                <img src="/mixteco/public/img/ima_lugares/san%20miguel.jpeg" alt="Sin lugares culturales">
+                                <img src="<?= $basePath ?>/public/img/ima_lugares/san%20miguel.jpeg" alt="Sin lugares culturales">
                             </div>
                             <div class="lugares-content">
                                 <h3 class="lugares-card-title">Sin lugares culturales</h3>
@@ -120,7 +123,7 @@ function lugares_img($value) {
             <button class="lugares-modal-close" type="button" aria-label="Cerrar">&times;</button>
         </div>
         <div class="lugares-modal-media">
-            <img id="lugares-modal-img" src="/mixteco/public/img/ima_lugares/san%20miguel.jpeg" alt="Imagen del lugar">
+            <img id="lugares-modal-img" src="<?= $basePath ?>/public/img/ima_lugares/san%20miguel.jpeg" alt="Imagen del lugar">
         </div>
         <div class="lugares-modal-body">
             <div class="lugares-modal-field">
@@ -141,5 +144,5 @@ function lugares_img($value) {
     </div>
 </div>
 
-<link rel="stylesheet" href="/mixteco/public/css/lugares.css">
-<script src="/mixteco/public/js/lugares.js"></script>
+<link rel="stylesheet" href="<?= $basePath ?>/public/css/lugares.css">
+<script src="<?= $basePath ?>/public/js/lugares.js"></script>

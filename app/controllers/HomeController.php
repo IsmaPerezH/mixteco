@@ -1,7 +1,8 @@
 <?php
 class HomeController {
     public function index() {
-        // Cargar las vistas en el orden correcto usando la estructura MVC
+        global $basePath;
+        $pageTitle = "Tu'un Savi - Lengua y Cultura Mixteca";
         require_once 'app/views/layout/header.php';
         require_once 'app/views/Home.php';
         require_once 'app/views/layout/footer.php';

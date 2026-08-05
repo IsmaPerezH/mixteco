@@ -1,6 +1,8 @@
 <?php
 class LugaresController {
     public function index() {
+        global $basePath;
+        $pageTitle = "Lugares Turísticos - San Miguel El Grande";
         require_once 'app/models/LugaresModel.php';
 
         $model = new LugaresModel();

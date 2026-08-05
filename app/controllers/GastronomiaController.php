@@ -1,6 +1,8 @@
 <?php
 class GastronomiaController {
     public function index() {
+        global $basePath;
+        $pageTitle = "Gastronomía - San Miguel El Grande";
         require_once 'app/models/GastronomiaModel.php';
 
         $model = new GastronomiaModel();

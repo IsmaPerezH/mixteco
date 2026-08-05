@@ -45,7 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
             modalComo.textContent = como || 'Sin informacion de como llegar.';
         }
         if (modalImg) {
-            modalImg.src = image || '/mixteco/public/img/Pozole-blanco.jpg';
+            const basePath = document.documentElement.dataset.basepath || '';
+            modalImg.src = image || basePath + '/public/img/Pozole-blanco.jpg';
             modalImg.alt = title || 'Imagen';
         }
         modal.classList.add('is-open');

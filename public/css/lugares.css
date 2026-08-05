@@ -4,10 +4,10 @@
 .hero-lugares {
     width: 100%;
     height: 250px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/mixteco/public/img/ima_lugares/san%20miguel.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../img/ima_lugares/san%20miguel.jpeg');
     background-size: cover;
     background-position: center;
-    background-color: #2C3E50;
+    background-color: var(--header-blue);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +41,7 @@
 
 .lugares-section-title {
     font-size: 2.2rem;
-    color: #2C3E50;
+    color: var(--header-blue);
     margin: 0 0 20px 0;
     border-bottom: 2px solid #E2E8F0;
     padding-bottom: 10px;
@@ -58,9 +58,9 @@
     width: 56px;
     height: 56px;
     border-radius: 999px;
-    border: 2px solid #C05621;
-    background: radial-gradient(circle at 30% 30%, #FFF7ED 0%, #FDE7D3 45%, #F3C6A6 100%);
-    color: #C05621;
+    border: 2px solid var(--header-blue);
+    background: radial-gradient(circle at 30% 30%, rgba(27,57,106,0.08) 0%, rgba(27,57,106,0.06) 45%, rgba(27,57,106,0.04) 100%);
+    color: var(--header-blue);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -70,15 +70,15 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
 }
 
 .lugares-nav-btn:hover {
-    background: #C05621;
+    background: var(--header-blue);
     color: #FFFFFF;
-    border-color: #9A3E1B;
+    border-color: rgba(0,0,0,0.08);
     transform: translateY(-50%) scale(1.06);
-    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.14);
 }
 
 .lugares-nav-btn i {
@@ -160,7 +160,7 @@
 
 .lugares-card-title {
     font-size: 1.4rem;
-    color: #2C3E50;
+    color: var(--header-blue);
     margin: 0 0 12px 0;
     line-height: 1.3;
 }
@@ -180,8 +180,8 @@
     justify-content: center;
     padding: 8px 16px;
     background-color: transparent;
-    border: 1px solid #C05621;
-    color: #C05621;
+    border: 1px solid var(--header-blue);
+    color: var(--header-blue);
     font-weight: 600;
     font-size: 0.9rem;
     border-radius: 6px;
@@ -192,7 +192,7 @@
 }
 
 .lugares-card:hover .btn-ghost {
-    background-color: #C05621;
+    background-color: var(--header-blue);
     color: #FFFFFF;
 }
 
@@ -260,7 +260,7 @@
 }
 
 .lugares-modal-header h2 {
-    color: #2C3E50;
+    color: var(--header-blue);
     margin: 0;
     font-size: 1.6rem;
 }
